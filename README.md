@@ -104,7 +104,7 @@ If you installed the library into non-system generic location you can set the cm
 Supported Platforms
 --------------------------
 The code has been tested on Linux and OS X with compilers ``clang`` and ``gcc``. 
-It should work for Windows as well, but has not been tested.
+It can work on Windows as well, but I just run and test the testcase ApproxMVBBExample on vs2013, the other testcase cannot compile on vs2013.
 
 ---------------------------
 Example Usage: Approximation MVBB
@@ -295,3 +295,6 @@ for the approximation of the diameter of a point cloud.
 I was inspired by the work and algorithms of [Gill Barequet & Sariel Har-Peled](http://sarielhp.org/p/98/bbox/) for computing a minimal volume bounding box.
 Additionally,  the geometric predicates (orient2d) used in the convex hull algorithm (graham scan) have been taken from the fine work of [Jonathan Richard Shewchuk](http://www.cs.cmu.edu/~quake/robust.html).
 Special thanks go to my significant other which always had an ear during breakfast for this little project :kissing_heart:
+
+hhmzb just modified the file so that it can work on vs2013 in 2018.1.24:
+CMakeLists.txt, xpfpa.h, AABB.hpp, AngleFunctions.hpp, ComputeApproxMVBB.hpp, ConvexHull2D.hpp, MinAreaRectangle.hpp, OOBB.hpp, ProjectedPointSet.hpp, RandomGenerators.hpp, ConvexHull2D.cpp 
