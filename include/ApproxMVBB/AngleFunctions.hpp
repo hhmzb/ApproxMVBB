@@ -14,6 +14,11 @@
 #include <cmath>
 #include "ApproxMVBB/Config/Config.hpp"
 #include ApproxMVBB_TypeDefs_INCLUDE_FILE
+
+#ifdef _FOR_MSVS_COMPLIER
+#define M_PI 3.1415926535898
+#endif
+
 namespace ApproxMVBB
 {
 namespace AngleFunctions

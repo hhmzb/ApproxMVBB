@@ -61,7 +61,11 @@ void ConvexHull2D::compute()
     // Sort by angle
     unsigned int deletedPoints = 0;
     CompareByAngle comp(m_p, base, position, deletedPoints);
-    std::sort(indices.begin() + 1, indices.end(), comp);
+#ifdef _FOR_MSVS_COMPLIER
+	sort_quickSort(indices,1, indices.size(), comp);
+#else
+	std::sort(indices.begin() + 1, indices.end(), comp);
+#endif
 
     std::vector<unsigned int> indicesT(indices.size() - deletedPoints);
     unsigned int k = 0;
@@ -198,4 +202,33 @@ bool ConvexHull2D::verifyHull()
     }
     return true;
 }
+#ifdef _FOR_MSVS_COMPLIER
+void ConvexHull2D::sort_quickSort(std::vector<std::pair<unsigned int, bool> > &input, size_t l, size_t r, PointFunctions::CompareByAngle& comp)
+{
+	using PointData = std::pair<unsigned int, bool>;
+	if (l < r)
+	{
+		unsigned int i = l, j = r;
+		PointData x = input[l];
+		while (i < j)
+		{
+			//while (i < j && s[j] >= x)
+			while (i < j && ((comp(x, input[j])) /*|| (x == input[j])*/))
+				j--;
+			if (i < j)
+				input[i++] = input[j];
+			while (i < j && comp(input[i], x))
+				i++;
+			if (i < j)
+				input[j--] = input[i];
+		}
+		input[i] = x;
+		sort_quickSort(input, l, i - 1, comp);
+		sort_quickSort(input, i + 1, r, comp);
+	}
+
+
+}
+#endif
+
 }

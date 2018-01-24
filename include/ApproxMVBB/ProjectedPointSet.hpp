@@ -26,7 +26,11 @@
 
 namespace ApproxMVBB
 {
+#ifdef _FOR_MSVS_COMPLIER
+class ProjectedPointSet
+#else
 class APPROXMVBB_EXPORT ProjectedPointSet
+#endif
 {
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW

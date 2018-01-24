@@ -39,7 +39,11 @@ ApproxMVBB_DEFINE_POINTS_CONFIG_TYPES;
  *   @param nPoints needs to be greater or equal than 2
  */
 template <typename Derived>
+#ifdef _FOR_MSVS_COMPLIER
+void samplePointsGrid(Matrix3Dyn& newPoints,
+#else
 APPROXMVBB_EXPORT void samplePointsGrid(Matrix3Dyn& newPoints,
+#endif
                                         const MatrixBase<Derived>& points,
                                         const unsigned int nPoints,
                                         OOBB& oobb,
@@ -181,14 +185,21 @@ APPROXMVBB_EXPORT void samplePointsGrid(Matrix3Dyn& newPoints,
  *        which is useful for degenerate cases, such as all points in a surface
  */
 template <typename Derived>
+#ifdef _FOR_MSVS_COMPLIER
+OOBB optimizeMVBB(const MatrixBase<Derived>& points,
+                                    OOBB& oobb_input,
+#else
 APPROXMVBB_EXPORT OOBB optimizeMVBB(const MatrixBase<Derived>& points,
                                     OOBB oobb,
+#endif								
                                     unsigned int nLoops     = 10,
                                     PREC volumeAcceptFactor = 1e-6,
                                     PREC minBoxExtent       = 1e-12)
 {
     EIGEN_STATIC_ASSERT_MATRIX_SPECIFIC_SIZE(Derived, 3, Eigen::Dynamic);
-
+#ifdef _FOR_MSVS_COMPLIER
+	OOBB oobb(oobb_input);
+#endif
     if(oobb.volume() == 0.0 || nLoops == 0)
     {
         return oobb;
@@ -282,8 +293,14 @@ APPROXMVBB_EXPORT OOBB optimizeMVBB(const MatrixBase<Derived>& points,
  *        which is useful for degenerate cases, such as all points in a surface
  */
 template <typename Derived>
+
+#ifdef _FOR_MSVS_COMPLIER
+OOBB approximateMVBBGridSearch(const MatrixBase<Derived>& points,
+                                    OOBB& oobb_input,
+#else
 APPROXMVBB_EXPORT OOBB approximateMVBBGridSearch(const MatrixBase<Derived>& points,
                                                  OOBB oobb,
+#endif
                                                  PREC epsilon,
                                                  const unsigned int gridSize = 5,
                                                  const unsigned int optLoops = 6,
@@ -291,7 +308,9 @@ APPROXMVBB_EXPORT OOBB approximateMVBBGridSearch(const MatrixBase<Derived>& poin
                                                  PREC minBoxExtent           = 1e-12)
 {
     EIGEN_STATIC_ASSERT_MATRIX_SPECIFIC_SIZE(Derived, 3, Eigen::Dynamic);
-
+#ifdef _FOR_MSVS_COMPLIER
+	OOBB oobb(oobb_input);
+#endif
     // Extent input oobb
     oobb.expandToMinExtentAbsolute(minBoxExtent);
 
@@ -365,7 +384,11 @@ APPROXMVBB_EXPORT OOBB approximateMVBBGridSearch(const MatrixBase<Derived>& poin
  * approximation in 3d.
  */
 template <typename Derived>
+#ifdef _FOR_MSVS_COMPLIER
+OOBB approximateMVBBDiam(const MatrixBase<Derived>& points,
+#else
 APPROXMVBB_EXPORT OOBB approximateMVBBDiam(const MatrixBase<Derived>& points,
+#endif
                                            const PREC epsilon,
                                            const unsigned int optLoops = 10,
                                            std::size_t seed            = ApproxMVBB::RandomGenerators::defaultSeed)
@@ -405,7 +428,11 @@ APPROXMVBB_EXPORT OOBB approximateMVBBDiam(const MatrixBase<Derived>& points,
 }
 
 template <typename Derived>
+#ifdef _FOR_MSVS_COMPLIER
+OOBB approximateMVBB(const MatrixBase<Derived>& points,
+#else
 APPROXMVBB_EXPORT OOBB approximateMVBB(const MatrixBase<Derived>& points,
+#endif
                                        const PREC epsilon,
                                        const unsigned int pointSamples           = 400,
                                        const unsigned int gridSize               = 5,

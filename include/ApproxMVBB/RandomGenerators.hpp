@@ -39,19 +39,19 @@ private:
     uint64_t x;  //< The state can be seeded with any value.
 public:
     SplitMix64(const SplitMix64& gen) = default;
-    SplitMix64(SplitMix64&& gen)      = default;
-
+//    SplitMix64(SplitMix64&& gen)      = default;
+	
     SplitMix64(uint64_t seed);
     void seed(uint64_t seed);
     uint64_t operator()();
 
     // for standard random
     using result_type = uint64_t;
-    static constexpr result_type min()
+    static const result_type min()
     {
         return std::numeric_limits<result_type>::min();
     }
-    static constexpr result_type max()
+    static const result_type max()
     {
         return std::numeric_limits<result_type>::max();
     }
@@ -73,7 +73,7 @@ private:
 
 public:
     XorShift128Plus(const XorShift128Plus& gen) = default;
-    XorShift128Plus(XorShift128Plus&& gen)      = default;
+//    XorShift128Plus(XorShift128Plus&& gen)      = default;
 
     XorShift128Plus(uint64_t seed);
     /** Take time() to seed this generator */
@@ -90,11 +90,11 @@ public:
 
     // for standard random
     using result_type = uint64_t;
-    static constexpr result_type min()
+    static const result_type min()
     {
         return std::numeric_limits<result_type>::min();
     }
-    static constexpr result_type max()
+    static const result_type max()
     {
         return std::numeric_limits<result_type>::max();
     }
@@ -114,7 +114,7 @@ private:
 
 public:
     XorShift1024Star(const XorShift1024Star& gen) = default;
-    XorShift1024Star(XorShift1024Star&& gen)      = default;
+//    XorShift1024Star(XorShift1024Star&& gen)      = default;
 
     XorShift1024Star(uint64_t seed);
     /** Take time() to seed this generator */
@@ -131,11 +131,11 @@ public:
 
     // for standard random
     using result_type = uint64_t;
-    static constexpr result_type min()
+    static const result_type min()
     {
         return std::numeric_limits<result_type>::min();
     }
-    static constexpr result_type max()
+    static const result_type max()
     {
         return std::numeric_limits<result_type>::max();
     }

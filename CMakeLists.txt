@@ -104,8 +104,9 @@ IF(NOT MYPROJECT_DONTSET_COMPILER_FLAGS_INTERNAL)
 		SET(CMAKE_CXX_FLAGS_RELEASE        "-O3 -DNDEBUG" CACHE STRING "Flags for CXX Compiler for release builds" FORCE)
 		SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" CACHE STRING "Flags for CXX Compiler for release builds with debug info" FORCE)
 
-  ELSEIF ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
+  ELSEIF ( ${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC )
     MESSAGE(WARNING "MSVC is partially supported (Visual Studio 2013 Update 5), trying to set compiler flags anyway!")
+	ADD_DEFINITIONS(-D_FOR_MSVS_COMPLIER)
     # add some flags
 		SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "/arch:SSE2" CACHE STRING "Flags for CXX Compiler" FORCE)
     # We cannot control the FPU unit in 64bit mode, this flag makes MSVC to not use x87 stuff in 64bit (or 32bit) mode

@@ -34,11 +34,15 @@ public:
 
     /** Copy and copy-move constructors */
     OOBB(const OOBB&) = default;
+#ifndef _FOR_MSVS_COMPLIER
     OOBB(OOBB&&)      = default;
-
+#endif
+	
     /** Assign and assign-move operators */
     OOBB& operator=(const OOBB&) = default;
+#ifndef _FOR_MSVS_COMPLIER	
     OOBB& operator=(OOBB&&) = default;
+#endif
 
     OOBB(const Vector3& minPoint, const Vector3& maxPoint, const Matrix33& A_IK);
 

@@ -24,6 +24,7 @@
 #include "ApproxMVBB/ConvexHull2D.hpp"
 #include "ApproxMVBB/PointFunctions.hpp"
 
+#define M_PI 3.1415926535898
 namespace ApproxMVBB
 {
 /** Computes the Minimum Area Rectangle of the input points

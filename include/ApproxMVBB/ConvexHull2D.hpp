@@ -64,7 +64,10 @@ public:
 
 private:
     void chainHull();
-
+#ifdef _FOR_MSVS_COMPLIER	
+    void sort_quickSort(std::vector<std::pair<unsigned int, bool> > &input, size_t start_pos, size_t end_pos, PointFunctions::CompareByAngle& aa);
+#endif	
+	
     std::vector<unsigned int> m_indicesCH;
     const MatrixRef<const Matrix2Dyn> m_p;
 };
