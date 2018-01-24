@@ -62,7 +62,7 @@ void ConvexHull2D::compute()
     unsigned int deletedPoints = 0;
     CompareByAngle comp(m_p, base, position, deletedPoints);
 #ifdef _FOR_MSVS_COMPLIER
-	sort_quickSort(indices,1, indices.size(), comp);
+	sort_quickSort(indices,1, indices.size()-1, comp);
 #else
 	std::sort(indices.begin() + 1, indices.end(), comp);
 #endif
